@@ -18,7 +18,7 @@ const getters = {
 const actions = {
     async logIn(context, user) {
         await new Promise(resolve => {
-            Vue.axios.post('login', user)
+            Vue.axios.post('api/auth/login', user)
                 .then(response => {
                     // console.log('response de login', response)
                     setTimeout(() => {

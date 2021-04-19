@@ -6,7 +6,6 @@ import App from './App.vue'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 
-
 const optionsSweetalert2 = {
     showConfirmButton: false,
     timerProgressBar: true,

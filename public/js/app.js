@@ -1955,15 +1955,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Layout = function Layout() {
-  return __webpack_require__.e(/*! import() */ "resources_js_views_Layout_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Layout.vue */ "./resources/js/views/Layout.vue"));
+  return __webpack_require__.e(/*! import() */ "resources_js_views_Layout_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Layout */ "./resources/js/views/Layout.vue"));
 };
 
 var Home = function Home() {
-  return __webpack_require__.e(/*! import() */ "resources_js_views_Home_Home_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Home/Home.vue */ "./resources/js/views/Home/Home.vue"));
+  return __webpack_require__.e(/*! import() */ "resources_js_views_Home_Home_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Home/Home */ "./resources/js/views/Home/Home.vue"));
 };
 
 var Login = function Login() {
-  return __webpack_require__.e(/*! import() */ "resources_js_views_Session_Login_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Session/Login.vue */ "./resources/js/views/Session/Login.vue"));
+  return __webpack_require__.e(/*! import() */ "resources_js_views_Session_Login_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Session/Login */ "./resources/js/views/Session/Login.vue"));
+};
+
+var Register = function Register() {
+  return __webpack_require__.e(/*! import() */ "resources_js_views_Session_Register_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Session/Register */ "./resources/js/views/Session/Register.vue"));
 };
 
 vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_1__.default);
@@ -1985,6 +1989,10 @@ var routes = [{
   path: '/session/login',
   component: Login,
   name: 'Login'
+}, {
+  path: '/session/register',
+  component: Register,
+  name: 'Register'
 }, {
   path: '*',
   component: Home,
@@ -2044,7 +2052,7 @@ var actions = {
             case 0:
               _context.next = 2;
               return new Promise(function (resolve) {
-                vue__WEBPACK_IMPORTED_MODULE_2__.default.axios.post('login', user).then(function (response) {
+                vue__WEBPACK_IMPORTED_MODULE_2__.default.axios.post('api/auth/login', user).then(function (response) {
                   // console.log('response de login', response)
                   setTimeout(function () {
                     context.commit('loginUserSuccess', response.data);
@@ -23947,7 +23955,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_Layout_vue":1,"resources_js_views_Home_Home_vue":1,"resources_js_views_Session_Login_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_Layout_vue":1,"resources_js_views_Home_Home_vue":1,"resources_js_views_Session_Login_vue":1,"resources_js_views_Session_Register_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

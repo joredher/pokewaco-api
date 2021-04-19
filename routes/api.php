@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::post('login','Waco/AuthController@login');
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('login','Waco\AuthController@login');
+    Route::post('register','Waco\AuthController@register');
+});
 
 Route::group([
     'middleware' => 'auth:api'
