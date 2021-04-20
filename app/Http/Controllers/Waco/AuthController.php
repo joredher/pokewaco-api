@@ -36,20 +36,6 @@ class AuthController extends Controller
     }
 
     /**
-     * @return JsonResponse
-     */
-    public function me(): JsonResponse
-    {
-        try {
-            return response()->json([
-                'user' => Auth::user(),
-            ]);
-        } catch (\Exception $e) {
-            return response()->json($e->getMessage());
-        }
-    }
-
-    /**
      * @param $token
      * @return JsonResponse
      */

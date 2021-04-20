@@ -37,7 +37,7 @@
             </div>
 
             <div class="text-sm">
-              <a href="#" class="font-medium text-red-600 hover:text-red-500" v-text="'Registrase'"/>
+              <a @click="$router.push({name: 'Register'})" class="font-medium text-red-600 hover:text-red-500" v-text="'Registrase'"/>
             </div>
           </div>
 

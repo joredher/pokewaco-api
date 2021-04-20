@@ -2040,6 +2040,9 @@ var state = {
 var getters = {
   user: function user(state) {
     return state.user;
+  },
+  access: function access(state) {
+    return state.access_token;
   }
 }; // actions
 

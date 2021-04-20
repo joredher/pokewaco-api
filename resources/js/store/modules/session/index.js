@@ -11,6 +11,9 @@ const state = {
 const getters = {
     user: state => {
         return state.user
+    },
+    access: state => {
+        return state.access_token
     }
 }
 
@@ -51,7 +54,7 @@ const mutations = {
     assignTokenAxios() {
         Vue.axios.defaults.headers.common['Authorization'] = `Bearer ${state.access_token}`
     },
-    logoutUser(state) {
+    logoutUser (state) {
         setTimeout(() => {
             router.push({name: 'Login'})
             localStorage.removeItem('user')
@@ -61,6 +64,7 @@ const mutations = {
         }, 500)
     }
 }
+
 
 export default {
     state,

@@ -16,11 +16,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login','Waco\AuthController@login');
-    Route::post('register','Waco\AuthController@register');
+    Route::post('register','Waco\UserController@store');
 });
 
 Route::group([
     'middleware' => 'auth:api'
 ], function () {
     Route::get('home','HomeController@index')->name('home');
+    Route::post('user/{id}','Waco\UserController@update');
+
+    Route::get('pokeBalls','Waco\PokeApiClientController@index');
+    Route::patch('favoritePokemon/user/{id}','Waco\UserController@selectionOfFavoritePokemonByUser');
+    Route::get('user_favorites/{id}','Waco\UserController@getFavoritesUser');
 });

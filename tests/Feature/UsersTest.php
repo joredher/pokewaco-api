@@ -30,7 +30,7 @@ class UsersTest extends TestCase
      */
     public function testCreateUserInvalid()
     {
-        $response = $this->postJson('/api/auth/register', []);
+        $response = $this->postJson('register', []);
         $response->assertStatus(422)->assertJsonValidationErrors([
             'password',
             'email',

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Waco;
 
 use App\Http\Controllers\Controller;
+use App\Models\Favorite;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -42,9 +44,33 @@ class UserController extends Controller
         ], 201);
     }
 
-    public function destroy($id)
+    public function selectionOfFavoritePokemonByUser(Request $request, $id): JsonResponse
     {
-        //
+        $user = User::find($id);
+        $favorites = $user->favorites();
+        $exists = $favorites->where([
+            'ref_api' => $request->ref_api,
+            'id_user' => $id
+        ])->first();
+        if ($exists) {
+            DB::statement("DELETE FROM favorites AS b WHERE  b.id_user = $id AND b.ref_api = '$request->ref_api'");
+        } else {
+            $favorite = $favorites->create($request->except('name'));
+        }
+
+        return response()->json([
+            'message' => strtoupper($request->name) . " ha sido " . ($exists ? 'des' : '') . "marcado como Favorito!",
+            'data' => $favorite ?? 'Ok'
+        ]);
+    }
+
+    public function getFavoritesUser($id): JsonResponse
+    {
+        $user = User::find($id);
+
+        return response()->json([
+            'data' => $user->favorites()->get()
+        ], 200);
     }
 
     /**

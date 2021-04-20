@@ -323,8 +323,12 @@ var render = function() {
                 _c("div", { staticClass: "text-sm" }, [
                   _c("a", {
                     staticClass: "font-medium text-red-600 hover:text-red-500",
-                    attrs: { href: "#" },
-                    domProps: { textContent: _vm._s("Registrase") }
+                    domProps: { textContent: _vm._s("Registrase") },
+                    on: {
+                      click: function($event) {
+                        return _vm.$router.push({ name: "Register" })
+                      }
+                    }
                   })
                 ])
               ]),
