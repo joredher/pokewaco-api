@@ -17,5 +17,3 @@ use Illuminate\Support\Facades\Route;
 Route::get('/{path?}', function () {
     return view('home');
 })->where('path','.*');
-
-Route::post('register','Waco\AuthController@register');
