@@ -24,11 +24,13 @@ const routes = [
     {
         path: '/session/login',
         component: Login,
+        meta: { requiredAuth: false },
         name: 'Login'
     },
     {
         path: '/session/register',
         component: Register,
+        meta: { requiredAuth: false },
         name: 'Register'
     },
     {

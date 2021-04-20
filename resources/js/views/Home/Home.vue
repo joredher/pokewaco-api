@@ -62,7 +62,7 @@
             <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
               <div>
                 <p class="text-sm text-gray-700">
-                  Muestra
+                  Muestra de
                   {{ ' ' }}
                   <span class="font-medium">1</span>
                   {{ ' ' }}
@@ -116,7 +116,7 @@
 <script>
 import Vue from 'vue'
 import {mapGetters} from 'vuex'
-import PokeBallInfoDialog from "./PokeBallInfoDialog";
+import PokeBallInfoDialog from './PokeBallInfoDialog'
 
 export default {
   name: 'Home',
@@ -137,12 +137,17 @@ export default {
       'user'
     ])
   },
-  created() {
+  beforeMount() {
+    this.getFavorites()
+  },
+  mounted () {
     this.getPokeMons()
   },
   methods: {
     async changePage(page) {
       this.page = (page <= 0 || page > this.pages) ? this.page : page
+      console.log('AS', page)
+      // this.getFavorites()
       await this.getPokeMons()
     },
     async getPokeMons() {
@@ -152,7 +157,7 @@ export default {
       }
       this.getFavorites()
       // console.log('PRUEBA DE INGRESO', this.access, params)
-      await this.axios.get('api/pokeBalls',
+      await this.axios.get('pokeBalls',
           {
             headers: {authorization: `bearer ${this.access}`},
             params: params
@@ -184,7 +189,7 @@ export default {
     },
     markFavorite(poke) {
       poke.toggleActive = !poke.toggleActive
-      this.axios.patch(`api/favoritePokemon/user/${this.user ? this.user.id : null}`, {
+      this.axios.patch(`favoritePokemon/user/${this.user ? this.user.id : null}`, {
         name: poke.name,
         ref_api: poke.url
       }, {headers: {authorization: `bearer ${this.access}`}}).then(response => {
@@ -203,7 +208,7 @@ export default {
 
     },
     getFavorites() {
-      this.axios.get(`api/user_favorites/${this.user ? this.user.id : null}`, {
+      this.axios.get(`user_favorites/${this.user ? this.user.id : null}`, {
         headers: {authorization: `bearer ${this.access}`},
       }).then(response => {
         if (response.data && response.data.data) {

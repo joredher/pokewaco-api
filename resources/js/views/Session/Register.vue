@@ -96,7 +96,6 @@
 </template>
 
 <script>
-  import Vue from 'vue'
   export default {
     name: 'Register',
     data: () => ({
@@ -119,7 +118,7 @@
         this.$router.push({name: 'Login'})
       },
       register() {
-        this.axios.post('api/auth/register', this.waco)
+        this.axios.post('auth/register', this.waco)
             .then(response => {
               Vue.swal({
                 icon: 'success',
@@ -128,7 +127,7 @@
               })
               this.homeReturn()
             }).catch(e => {
-              Vue.swal({
+              this.swal({
                 icon: 'error',
                 title: 'Error el registro.',
                 text: (e && e.response && e.response.data ? e.response.data.message : '')

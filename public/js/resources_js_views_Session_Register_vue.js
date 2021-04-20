@@ -11,7 +11,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 //
 //
 //
@@ -109,7 +108,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Register',
   data: function data() {
@@ -134,8 +132,8 @@ __webpack_require__.r(__webpack_exports__);
     register: function register() {
       var _this = this;
 
-      this.axios.post('api/auth/register', this.waco).then(function (response) {
-        vue__WEBPACK_IMPORTED_MODULE_0__.default.swal({
+      this.axios.post('auth/register', this.waco).then(function (response) {
+        Vue.swal({
           icon: 'success',
           title: response.data.message,
           text: 'Ya es posible iniciar sesión.'
@@ -143,7 +141,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.homeReturn();
       })["catch"](function (e) {
-        vue__WEBPACK_IMPORTED_MODULE_0__.default.swal({
+        _this.swal({
           icon: 'error',
           title: 'Error el registro.',
           text: e && e.response && e.response.data ? e.response.data.message : ''

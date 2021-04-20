@@ -32,7 +32,10 @@ class UserController extends Controller
 
     public function show($id)
     {
-        //
+        $user = User::whereId($id)->first();
+        return response()->json([
+            'data' => $user
+        ])->setStatusCode(200);
     }
 
     public function update(Request $request, $id): JsonResponse

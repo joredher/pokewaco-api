@@ -12,9 +12,6 @@ const optionsSweetalert2 = {
     timer: 6000
 }
 
-Vue.use(VueAxios, axios)
-Vue.use(VueSweetalert2, optionsSweetalert2)
-
 router.beforeEach((to,from,next) => {
     if (to.matched.some(record => record.meta.requiredAuth)) {
         if (localStorage.getItem('user') === null) {
@@ -27,7 +24,7 @@ router.beforeEach((to,from,next) => {
     }
 })
 
-axios.defaults.baseURL = `${window.location.origin}/`
+axios.defaults.baseURL = `${window.location.origin}/api`
 
 axios.interceptors.response.use(undefined, (error) => {
     if (error.response.status === 401) {
@@ -38,8 +35,12 @@ axios.interceptors.response.use(undefined, (error) => {
 
 import {store} from './store/store'
 
+Vue.use(VueAxios, axios)
+Vue.use(VueSweetalert2, optionsSweetalert2)
+
 new Vue({
     store,
     router,
     render: h => h(App),
+    components: {App}
 }).$mount('#app')

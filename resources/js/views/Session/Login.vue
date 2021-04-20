@@ -59,7 +59,6 @@
 </template>
 
 <script>
-  import Vue from 'vue'
   export default {
     name: 'Login',
     data: () => ({
@@ -71,7 +70,7 @@
         if (this.email && this.password) {
           this.$store.dispatch('logIn',{email: this.email, password: this.password})
         } else {
-          Vue.swal({
+          this.swal({
             icon: 'error',
             title: 'DATOS INCORRECTOS',
             text: `El campo ${(!this.email ? 'email' : (!this.password ? 'contraseña' : ''))} se encuentra vacío.`

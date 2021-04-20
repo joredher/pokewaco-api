@@ -21,9 +21,8 @@ const getters = {
 const actions = {
     async logIn(context, user) {
         await new Promise(resolve => {
-            Vue.axios.post('api/auth/login', user)
+            Vue.axios.post('auth/login', user)
                 .then(response => {
-                    // console.log('response de login', response)
                     setTimeout(() => {
                         context.commit('loginUserSuccess', response.data)
                         context.commit('assignTokenAxios')
@@ -52,7 +51,7 @@ const mutations = {
         router.push({name: 'Home', params: {userId: state.user.id}})
     },
     assignTokenAxios() {
-        Vue.axios.defaults.headers.common['Authorization'] = `Bearer ${state.access_token}`
+        this.axios.defaults.headers.common['Authorization'] = `Bearer ${state.access_token}`
     },
     logoutUser (state) {
         setTimeout(() => {

@@ -27,7 +27,8 @@ Route::group([
     'middleware' => 'auth:api'
 ], function () {
     Route::get('home','HomeController@index')->name('home');
-    Route::post('user/{id}','Waco\UserController@update');
+    Route::put('user/{id}','Waco\UserController@update');
+    Route::get('show/{id}','Waco\UserController@show');
 
     Route::get('pokeBalls','Waco\PokeApiClientController@index');
     Route::patch('favoritePokemon/user/{id}','Waco\UserController@selectionOfFavoritePokemonByUser');
