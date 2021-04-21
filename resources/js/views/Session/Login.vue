@@ -37,7 +37,7 @@
             </div>
 
             <div class="text-sm">
-              <a @click="$router.push({name: 'Register'})" class="font-medium text-red-600 hover:text-red-500" v-text="'Registrase'"/>
+              <a @click="$router.push({name: 'Register'})" class="font-medium cursor-pointer text-red-600 hover:text-red-500" v-text="'Registrarse'"/>
             </div>
           </div>
 
@@ -59,6 +59,7 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   export default {
     name: 'Login',
     data: () => ({
@@ -70,7 +71,7 @@
         if (this.email && this.password) {
           this.$store.dispatch('logIn',{email: this.email, password: this.password})
         } else {
-          this.swal({
+          Vue.swal({
             icon: 'error',
             title: 'DATOS INCORRECTOS',
             text: `El campo ${(!this.email ? 'email' : (!this.password ? 'contraseña' : ''))} se encuentra vacío.`

@@ -146,7 +146,7 @@ export default {
   methods: {
     async changePage(page) {
       this.page = (page <= 0 || page > this.pages) ? this.page : page
-      console.log('AS', page)
+      // console.log('AS', page)
       // this.getFavorites()
       await this.getPokeMons()
     },
@@ -169,11 +169,11 @@ export default {
                 let exists = this.favorites.find((z) => (z.ref_api === x.url))
                 let boolTo = false
                 if (exists) {
-                  console.log('SI SON', exists.ref_api, x.url)
+                  // console.log('SI SON', exists.ref_api, x.url)
                   x.toggleActive = !boolTo
                 } else {
                   x.toggleActive = boolTo
-                  console.log('NO SON', x.url)
+                  // console.log('NO SON', x.url)
                 }
               })
               this.pokeMons = data

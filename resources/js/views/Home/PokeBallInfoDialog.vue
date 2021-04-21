@@ -1,10 +1,23 @@
 <template>
   <modal-tailwind
-      :open-modal="isOpen"
-      @close="() => {
-          this.isOpen = false
-          this.pokemon = null
-        }"
+      v-model="isOpen"
+      :class-modal="{
+        'modal-width': true
+      }"
+      active-close
+      @closeModal="() => {
+        this.isOpen = false
+        this.pokemon = null
+      }"
+      :title="`INFORMACIÓN DEL POKEMÓN`"
+      icon='<svg xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round"
+              stroke-linejoin="round" stroke-width="2"
+              d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2
+              0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2
+              0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>'
   >
     <template slot="container">
       <div class="mt-10 sm:mt-0">
@@ -24,13 +37,10 @@
             <div class="shadow overflow-hidden sm:rounded-md">
               <div class="px-4 py-5 bg-white sm:p-6">
                 <div class="grid grid-cols-6 gap-6">
-                  <div v-for="(item, index) in pokemon" class="col-span-6" :key="index">
+                  <div v-for="(item, index) in pokemon" class="col-span-6" :key="index" v-if="index !== 'id'">
                     <label :for="index" class="block text-sm font-medium text-gray-700"
-                           v-text="index.charAt(0).toUpperCase() + index.slice(1)"></label>
-                    <!--            <input :name="index" :id="index"-->
-                    <!--                   readonly-->
-                    <!--                   v-model="item"-->
-                    <!--                   :class="styleClass"/>-->
+                           v-text="title(index)"></label>
+                    <!--                           v-text="index.charAt(0).toUpperCase() + index.slice(1)"></label>-->
                   </div>
                 </div>
               </div>
@@ -45,6 +55,7 @@
 
 <script>
 import Vue from "vue"
+import translate from '../../translate/lang_es'
 
 export default {
   name: 'PokeBallInfoDialog',
@@ -64,25 +75,39 @@ export default {
       this.isOpen = true
       this.getPokemon(url)
     },
-    getPokemon(url) {
-      this.axios.get(url)
+    async getPokemon(url) {
+      await this.axios.get(url)
           .then(response => {
             if (response.data) {
-              console.log('B', response)
+              // console.log('B', response)
               this.pokemon = response.data
-              console.log('A', this.pokemon)
+              // console.log('A', this.pokemon)
             }
           }).catch(e => {
-        Vue.swal({
-          icon: 'error',
-          title: 'Error al intentar traer el registro',
-          text: (e && e.response && e.response.data ? e.response.data.message : '')
-        })
-      })
+            Vue.swal({
+              icon: 'error',
+              title: 'Error al intentar traer el registro',
+              text: (e && e.response && e.response.data ? e.response.data.message : '')
+            })
+          })
+    },
+    title(index) {
+      const objectTranslate = Object.entries(translate).filter(x => x[0] === index)
+      if (objectTranslate.filter(x => x[0] === index).length === 1) {
+        return translate[index]
+      }
+      return  index
+      // if (translate[index]) {
+      //   return translate[index]
+      // }
     }
   }
 }
 </script>
 
 <style scoped>
+.modal-width {
+  width: 700px;
+  max-width: none;
+}
 </style>

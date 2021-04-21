@@ -177,13 +177,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.page = page <= 0 || page > _this.pages ? _this.page : page;
-                console.log('AS', page); // this.getFavorites()
+                _this.page = page <= 0 || page > _this.pages ? _this.page : page; // console.log('AS', page)
+                // this.getFavorites()
 
-                _context.next = 4;
+                _context.next = 3;
                 return _this.getPokeMons();
 
-              case 4:
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -225,11 +225,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                       var boolTo = false;
 
                       if (exists) {
-                        console.log('SI SON', exists.ref_api, x.url);
+                        // console.log('SI SON', exists.ref_api, x.url)
                         x.toggleActive = !boolTo;
                       } else {
-                        x.toggleActive = boolTo;
-                        console.log('NO SON', x.url);
+                        x.toggleActive = boolTo; // console.log('NO SON', x.url)
                       }
                     });
                     _this2.pokeMons = data;
@@ -316,7 +315,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var _translate_lang_es__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../translate/lang_es */ "./resources/js/translate/lang_es.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -362,6 +370,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'PokeBallInfoDialog',
@@ -386,22 +405,107 @@ __webpack_require__.r(__webpack_exports__);
     getPokemon: function getPokemon(url) {
       var _this = this;
 
-      this.axios.get(url).then(function (response) {
-        if (response.data) {
-          console.log('B', response);
-          _this.pokemon = response.data;
-          console.log('A', _this.pokemon);
-        }
-      })["catch"](function (e) {
-        vue__WEBPACK_IMPORTED_MODULE_0__.default.swal({
-          icon: 'error',
-          title: 'Error al intentar traer el registro',
-          text: e && e.response && e.response.data ? e.response.data.message : ''
-        });
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.axios.get(url).then(function (response) {
+                  if (response.data) {
+                    // console.log('B', response)
+                    _this.pokemon = response.data; // console.log('A', this.pokemon)
+                  }
+                })["catch"](function (e) {
+                  vue__WEBPACK_IMPORTED_MODULE_2__.default.swal({
+                    icon: 'error',
+                    title: 'Error al intentar traer el registro',
+                    text: e && e.response && e.response.data ? e.response.data.message : ''
+                  });
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    title: function title(index) {
+      var objectTranslate = Object.entries(_translate_lang_es__WEBPACK_IMPORTED_MODULE_1__.default).filter(function (x) {
+        return x[0] === index;
       });
+
+      if (objectTranslate.filter(function (x) {
+        return x[0] === index;
+      }).length === 1) {
+        return _translate_lang_es__WEBPACK_IMPORTED_MODULE_1__.default[index];
+      }
+
+      return index; // if (translate[index]) {
+      //   return translate[index]
+      // }
     }
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/translate/lang_es.js":
+/*!*******************************************!*\
+  !*** ./resources/js/translate/lang_es.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  abilities: 'Lista de Habilidades',
+  base_experience: 'Experiencia base',
+  height: 'Altura del Pokémon',
+  weight: 'Anchura del Pokémon',
+  is_default: 'Es Pokémon',
+  order: 'Orden según Familia Pokémon',
+  forms: 'Formas del Pokémon',
+  held_items: 'Elementos del Pokémon al ser encontrado',
+  location_area_encounters: 'Lugares para encontrar al Pokémon',
+  sprites: 'Formas de representar al Pokémon en el Juego',
+  species: 'Especies a las que pertenece el Pokémon',
+  stats: 'Una lista de valores de estadísticas base para este Pokémon',
+  types: 'Una lista de detalles que muestran los tipos que tiene este Pokémon',
+  moves: 'Lista de Movimientos',
+  past_types: 'Tipo pasado Pokémon',
+  name: 'Nombre Pokémon',
+  game_indices: 'Lista de índices'
+});
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Home/PokeBallInfoDialog.vue?vue&type=style&index=0&id=5df25d22&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Home/PokeBallInfoDialog.vue?vue&type=style&index=0&id=5df25d22&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".modal-width[data-v-5df25d22] {\n  width: 700px;\n  max-width: none;\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
 
 /***/ }),
 
@@ -457,15 +561,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _PokeBallInfoDialog_vue_vue_type_template_id_5df25d22_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PokeBallInfoDialog.vue?vue&type=template&id=5df25d22&scoped=true& */ "./resources/js/views/Home/PokeBallInfoDialog.vue?vue&type=template&id=5df25d22&scoped=true&");
 /* harmony import */ var _PokeBallInfoDialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PokeBallInfoDialog.vue?vue&type=script&lang=js& */ "./resources/js/views/Home/PokeBallInfoDialog.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _PokeBallInfoDialog_vue_vue_type_style_index_0_id_5df25d22_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PokeBallInfoDialog.vue?vue&type=style&index=0&id=5df25d22&scoped=true&lang=css& */ "./resources/js/views/Home/PokeBallInfoDialog.vue?vue&type=style&index=0&id=5df25d22&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
   _PokeBallInfoDialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
   _PokeBallInfoDialog_vue_vue_type_template_id_5df25d22_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
   _PokeBallInfoDialog_vue_vue_type_template_id_5df25d22_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
@@ -545,6 +651,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PokeBallInfoDialog_vue_vue_type_template_id_5df25d22_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PokeBallInfoDialog_vue_vue_type_template_id_5df25d22_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PokeBallInfoDialog.vue?vue&type=template&id=5df25d22&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Home/PokeBallInfoDialog.vue?vue&type=template&id=5df25d22&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/Home/PokeBallInfoDialog.vue?vue&type=style&index=0&id=5df25d22&scoped=true&lang=css&":
+/*!*****************************************************************************************************************!*\
+  !*** ./resources/js/views/Home/PokeBallInfoDialog.vue?vue&type=style&index=0&id=5df25d22&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PokeBallInfoDialog_vue_vue_type_style_index_0_id_5df25d22_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-style-loader/index.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PokeBallInfoDialog.vue?vue&type=style&index=0&id=5df25d22&scoped=true&lang=css& */ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Home/PokeBallInfoDialog.vue?vue&type=style&index=0&id=5df25d22&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PokeBallInfoDialog_vue_vue_type_style_index_0_id_5df25d22_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PokeBallInfoDialog_vue_vue_type_style_index_0_id_5df25d22_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PokeBallInfoDialog_vue_vue_type_style_index_0_id_5df25d22_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PokeBallInfoDialog_vue_vue_type_style_index_0_id_5df25d22_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 
 
 /***/ }),
@@ -977,12 +1100,27 @@ var render = function() {
   return _c(
     "modal-tailwind",
     {
-      attrs: { "open-modal": _vm.isOpen },
+      attrs: {
+        "class-modal": {
+          "modal-width": true
+        },
+        "active-close": "",
+        title: "INFORMACIÓN DEL POKEMÓN",
+        icon:
+          '<svg xmlns="http://www.w3.org/2000/svg"\n          class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">\n            <path stroke-linecap="round"\n            stroke-linejoin="round" stroke-width="2"\n            d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2\n            0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2\n            0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />\n          </svg>'
+      },
       on: {
-        close: function() {
+        closeModal: function() {
           this$1.isOpen = false
           this$1.pokemon = null
         }
+      },
+      model: {
+        value: _vm.isOpen,
+        callback: function($$v) {
+          _vm.isOpen = $$v
+        },
+        expression: "isOpen"
       }
     },
     [
@@ -1030,22 +1168,22 @@ var render = function() {
                       "div",
                       { staticClass: "grid grid-cols-6 gap-6" },
                       _vm._l(_vm.pokemon, function(item, index) {
-                        return _c(
-                          "div",
-                          { key: index, staticClass: "col-span-6" },
-                          [
-                            _c("label", {
-                              staticClass:
-                                "block text-sm font-medium text-gray-700",
-                              attrs: { for: index },
-                              domProps: {
-                                textContent: _vm._s(
-                                  index.charAt(0).toUpperCase() + index.slice(1)
-                                )
-                              }
-                            })
-                          ]
-                        )
+                        return index !== "id"
+                          ? _c(
+                              "div",
+                              { key: index, staticClass: "col-span-6" },
+                              [
+                                _c("label", {
+                                  staticClass:
+                                    "block text-sm font-medium text-gray-700",
+                                  attrs: { for: index },
+                                  domProps: {
+                                    textContent: _vm._s(_vm.title(index))
+                                  }
+                                })
+                              ]
+                            )
+                          : _vm._e()
                       }),
                       0
                     )
@@ -1064,6 +1202,27 @@ var staticRenderFns = []
 render._withStripped = true
 
 
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Home/PokeBallInfoDialog.vue?vue&type=style&index=0&id=5df25d22&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Home/PokeBallInfoDialog.vue?vue&type=style&index=0&id=5df25d22&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PokeBallInfoDialog.vue?vue&type=style&index=0&id=5df25d22&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Home/PokeBallInfoDialog.vue?vue&type=style&index=0&id=5df25d22&scoped=true&lang=css&");
+if(content.__esModule) content = content.default;
+if(typeof content === 'string') content = [[module.id, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(/*! !../../../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
+var update = add("3570896c", content, false, {});
+// Hot Module Replacement
+if(false) {}
 
 /***/ })
 

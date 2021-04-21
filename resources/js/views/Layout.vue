@@ -15,9 +15,11 @@
               <div v-for="(item, itemIdx) in navigations" :key="itemIdx">
                 <a :to="{routeName: item.routeName}"
                    :key="itemIdx"
-                   class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
+                   class="bg-gray-900 text-white px-3 py-2
+                   cursor-pointer
+                   rounded-md text-sm font-medium">
                   <template>
-                    <div v-html="item.iconTemplate"  class="inline-block align-middle"></div>
+                    <div v-html="item.iconTemplate" class="inline-block align-middle"></div>
                   </template>
                   <span v-text="item.text"></span>
                 </a>
@@ -39,7 +41,7 @@
                   </div>
                 </div>
                 <div class="md:ml-4">
-                  <button @click="editUser" class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none
+                  <button @click="editUser('open')" class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none
                               focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                     <span class="sr-only">Abrir edición de usuario</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
@@ -70,7 +72,7 @@
     </nav>
     <header class="bg-white shadow">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold text-gray-900" v-text="'API'"/>
+        <h1 class="text-3xl font-bold text-gray-900" v-text="'API POKÉMON'"/>
       </div>
     </header>
     <main>
@@ -83,13 +85,15 @@
         </div>
       </div>
     </main>
-    <edit-profile ref="refEditProfile" :user="user ? user.id : null"></edit-profile>
+    <edit-profile ref="refEditProfile" :user="user ? user.id : null" @stopModal="item => editUser(item)"></edit-profile>
   </div>
 </template>
 
 <script>
 import {mapGetters} from 'vuex'
 import EditProfile from './Session/User/EditProfile'
+import Vue from "vue";
+
 export default {
   name: 'Layout',
   components: {
@@ -105,7 +109,7 @@ export default {
                         </svg>`
       },
       {
-        text: 'Favoritos',
+        text: 'Tus Favoritos',
         routeName: '#',
         iconTemplate: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor">
@@ -121,16 +125,21 @@ export default {
     profile: ['Perfil', 'Cerrar Sesión']
   }),
   computed: {
-    ...mapGetters([
-      'user'
-    ])
+    ...mapGetters(['user'])
   },
   methods: {
     logoutUser() {
       this.$store.commit('logoutUser')
     },
-    editUser() {
-      this.$refs.refEditProfile.open()
+    editUser(item = null) {
+      if (item !== null && (typeof item !== 'string')) {
+        const result = this.compareObject(item, this.user)
+        if ((typeof result !== 'string') && (result === true)) {
+          this.$store.commit('updateLocaleUser', item)
+        }
+      } else {
+        this.$refs.refEditProfile.open()
+      }
     }
   }
 }

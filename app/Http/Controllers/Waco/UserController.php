@@ -44,7 +44,7 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'Se han actualizado los datos correctamente!'
-        ], 201);
+        ], 202);
     }
 
     public function selectionOfFavoritePokemonByUser(Request $request, $id): JsonResponse
@@ -84,9 +84,10 @@ class UserController extends Controller
     public function register(Request $request, $id = null): User
     {
         $user = $id ? User::find($id) : new User();
-        $user->fill($request->except('password'));
+        $user->fill($request->except('password','birthdate'));
+        $user->birthdate = $request->birthdate;
 
-        if (($id && (!Hash::check($request->password, $user->password))) || (!$id)) {
+        if (($id && $request->password && (!Hash::check($request->password, $user->password))) || (!$id)) {
             $user->password = bcrypt($request->password);
         }
 

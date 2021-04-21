@@ -96,6 +96,7 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   export default {
     name: 'Register',
     data: () => ({
@@ -127,7 +128,7 @@
               })
               this.homeReturn()
             }).catch(e => {
-              this.swal({
+            Vue.swal({
                 icon: 'error',
                 title: 'Error el registro.',
                 text: (e && e.response && e.response.data ? e.response.data.message : '')

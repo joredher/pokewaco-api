@@ -5,6 +5,7 @@ import axios from 'axios'
 import App from './App.vue'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
+import VueTailwindPicker from 'vue-tailwind-picker'
 
 const optionsSweetalert2 = {
     showConfirmButton: false,
@@ -35,8 +36,36 @@ axios.interceptors.response.use(undefined, (error) => {
 
 import {store} from './store/store'
 
+Vue.mixin({
+    methods: {
+        compareObject (object, objectCompare) {
+            if (typeof object === 'object') {
+                let sortObject = Object.keys(object).sort()
+                let sortObjectCompare = Object.keys(objectCompare).sort()
+                let response = null
+                if (sortObject.join('') !== sortObjectCompare.join('')) {
+                    response = 'No es igual'
+                }
+                let data = {}
+                if (response === null) {
+                    for (let i = 0; i < sortObject.length; i++) {
+                        if ((sortObject[i] === sortObjectCompare[i])
+                            && (object[sortObject[i]] !== objectCompare[sortObjectCompare[i]])
+                            && (object[sortObject[i]] !== null)) {
+                            data[sortObject[i]] = object[sortObject[i]]
+                        }
+                    }
+                }
+                let bo = false
+                return (response !== null) ? response : (Object.entries(data).length > 0 ? true : (bo))
+            }
+        }
+    }
+})
+
 Vue.use(VueAxios, axios)
 Vue.use(VueSweetalert2, optionsSweetalert2)
+Vue.use(VueTailwindPicker)
 
 new Vue({
     store,

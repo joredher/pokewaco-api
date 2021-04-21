@@ -108,6 +108,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -122,7 +125,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         routeName: 'Home',
         iconTemplate: "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-6 w-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\n                        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6\" />\n                        </svg>"
       }, {
-        text: 'Favoritos',
+        text: 'Tus Favoritos',
         routeName: '#',
         iconTemplate: "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-6 w-6\" fill=\"none\" viewBox=\"0 0 24 24\"\n                         stroke=\"currentColor\">\n                      <path stroke-linecap=\"round\" stroke-linejoin=\"round\"\n                            stroke-width=\"2\"\n                            d=\"M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969\n                        0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538\n                        1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1\n                        1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z\"/>\n                    </svg>"
       }],
@@ -135,7 +138,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.commit('logoutUser');
     },
     editUser: function editUser() {
-      this.$refs.refEditProfile.open();
+      var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+      if (item !== null && typeof item !== 'string') {
+        var result = this.compareObject(item, this.user);
+
+        if (typeof result !== 'string' && result === true) {
+          this.$store.commit('updateLocaleUser', item);
+        }
+      } else {
+        this.$refs.refEditProfile.open();
+      }
     }
   }
 });
@@ -153,15 +166,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -224,67 +230,152 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'EditProfile',
   components: {
-    ModalTailwind: function ModalTailwind() {
-      return __webpack_require__.e(/*! import() */ "resources_js_components_ModalTailwind_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../../components/ModalTailwind */ "./resources/js/components/ModalTailwind.vue"));
+    VueTailwindPicker: function VueTailwindPicker() {
+      return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! vue-tailwind-picker */ "./node_modules/vue-tailwind-picker/dist/vue-tailwind-picker.esm.js"));
     }
   },
   props: ['user'],
   data: function data() {
     return {
-      isOpen: false,
+      isOpenDialog: false,
       pokemon: null,
       waco: null,
+      birthdateTemp: '',
       styleClass: "appearance-none rounded-none relative block w-full px-3 py-2 border\n" + "border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none\n" + "focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm"
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)(['access'])),
-  mounted: function mounted() {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(['access'])), {}, {
+    titleUser: function titleUser() {
+      return 'Edición de Usuario';
+    }
+  }),
+  watch: {
+    'isOpenDialog': {
+      handler: function handler(val) {
+        if (!val) {
+          var data = this.waco ? this.waco : null;
+          this.waco = null;
+          this.$emit('stopModal', data);
+        }
+      },
+      immediate: false
+    },
+    'birthdateTemp': {
+      handler: function handler(val) {
+        this.waco.birthdate = val;
+      },
+      immediate: false
+    }
+  },
+  created: function created() {
     this.formReset();
   },
   methods: {
     open: function open() {
+      this.isOpenDialog = true;
       this.getUser(this.user);
-      this.isOpen = true;
-      console.log('segundo', this.waco);
     },
     getUser: function getUser(user) {
       var _this = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return new Promise(function (resolve) {
-                  _this.axios.get("show/".concat(user), {
-                    headers: {
-                      authorization: "bearer ".concat(_this.access)
-                    }
-                  }).then(function (response) {
-                    console.log('respo', response);
-                    _this.waco = JSON.parse(JSON.stringify(response.data.data));
-                    resolve(true);
-                  })["catch"](function (e) {
-                    _this.swal({
-                      icon: 'error',
-                      title: 'Error al intentar traer el registro',
-                      text: e && e.response && e.response.data ? e.response.data.message : ''
-                    });
-                  });
-                });
+      this.axios.get("show/".concat(user), {
+        headers: {
+          authorization: "bearer ".concat(this.access)
+        }
+      }).then(function (response) {
+        _this.waco = JSON.parse(JSON.stringify(response.data.data));
+      })["catch"](function (e) {
+        vue__WEBPACK_IMPORTED_MODULE_1__.default.swal({
+          icon: 'error',
+          title: 'Error al intentar traer el registro',
+          text: e && e.response && e.response.data ? e.response.data.message : ''
+        });
+      });
+    },
+    updateUser: function updateUser() {
+      var _this2 = this;
 
-              case 2:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
+      this.axios.put("user/".concat(this.user), this.waco, {
+        headers: {
+          authorization: "bearer ".concat(this.access)
+        }
+      }).then(function (response) {
+        vue__WEBPACK_IMPORTED_MODULE_1__.default.swal({
+          icon: 'success',
+          title: 'Actualización.',
+          text: response.data !== '' ? response.data.message : ''
+        });
+        _this2.isOpenDialog = false;
+      })["catch"](function (e) {
+        vue__WEBPACK_IMPORTED_MODULE_1__.default.swal({
+          icon: 'error',
+          title: 'Error al actualizar la información.',
+          text: e && e.response && e.response.data ? e.response.data.message : ''
+        });
+      });
     },
     formReset: function formReset() {
       this.waco = {
@@ -294,12 +385,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         password: null,
         address: null,
         city: null,
+        email_verified_at: null,
         birthdate: null
       };
-    },
-    closeModal: function closeModal() {
-      this.isOpen = false;
-      this.waco = null;
+      this.isOpenDialog = false;
+      this.birthdateTemp = '';
     }
   }
 });
@@ -323,7 +413,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".modal[data-v-29145a73] {\n  transition: opacity 0.25s ease;\n}\ndiv.modal-active[data-v-29145a73] {\n  overflow: hidden;\n  overflow-y: auto !important;\n}\n.opacity-95[data-v-29145a73] {\n  opacity: .95\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".modal-width[data-v-29145a73] {\n  width: 700px;\n  max-width: none;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -528,7 +618,7 @@ var render = function() {
                       {
                         key: itemIdx,
                         staticClass:
-                          "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium",
+                          "bg-gray-900 text-white px-3 py-2\n                 cursor-pointer\n                 rounded-md text-sm font-medium",
                         attrs: { to: { routeName: item.routeName } }
                       },
                       [
@@ -583,7 +673,11 @@ var render = function() {
                       {
                         staticClass:
                           "max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none\n                            focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white",
-                        on: { click: _vm.editUser }
+                        on: {
+                          click: function($event) {
+                            return _vm.editUser("open")
+                          }
+                        }
                       },
                       [
                         _c("span", { staticClass: "sr-only" }, [
@@ -679,7 +773,7 @@ var render = function() {
           [
             _c("h1", {
               staticClass: "text-3xl font-bold text-gray-900",
-              domProps: { textContent: _vm._s("API") }
+              domProps: { textContent: _vm._s("API POKÉMON") }
             })
           ]
         )
@@ -703,7 +797,12 @@ var render = function() {
       _vm._v(" "),
       _c("edit-profile", {
         ref: "refEditProfile",
-        attrs: { user: _vm.user ? _vm.user.id : null }
+        attrs: { user: _vm.user ? _vm.user.id : null },
+        on: {
+          stopModal: function(item) {
+            return _vm.editUser(item)
+          }
+        }
       })
     ],
     1
@@ -761,75 +860,478 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "modal-tailwind",
+    "transition",
     {
-      attrs: { "open-modal": _vm.isOpen },
-      on: {
-        close: function($event) {
-          $event.stopPropagation()
-          return _vm.closeModal($event)
-        }
+      attrs: {
+        "enter-active-class": "ease-out duration-300",
+        "enter-class": "opacity-0",
+        "enter-to-class": "opacity-100",
+        "leave-active-class": "ease-in duration-200",
+        "leave-class": "opacity-100",
+        "leave-to-class": "opacity-0"
       }
     },
     [
-      _c("template", { slot: "container" }, [
-        _vm.waco && _vm.waco.id
-          ? _c(
-              "form",
-              {
-                staticClass: "mt-8 space-y-6",
-                attrs: { action: "#", method: "PUT" }
-              },
-              [
-                _c("div", { staticClass: "mt-10 sm:mt-0" }, [
-                  _c("div", { staticClass: "md:grid md:gap-2" }, [
-                    _c("div", { staticClass: "col-span-12" }, [
-                      _c(
-                        "label",
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.isOpenDialog,
+              expression: "isOpenDialog"
+            }
+          ],
+          staticClass: "fixed z-10 inset-0 overflow-y-auto",
+          attrs: {
+            "aria-labelledby": "modal-title",
+            role: "dialog",
+            "aria-modal": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+            },
+            [
+              _c("div", {
+                staticClass:
+                  "fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass:
+                    "hidden sm:inline-block sm:align-middle sm:h-screen",
+                  attrs: { "aria-hidden": "true" }
+                },
+                [_vm._v("​")]
+              ),
+              _vm._v(" "),
+              _c(
+                "transition",
+                {
+                  attrs: {
+                    "enter-active-class": "ease-out duration-300",
+                    "enter-class":
+                      "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95",
+                    "enter-to-class": "opacity-100 translate-y-0 sm:scale-100",
+                    "leave-active-class": "ease-in duration-200",
+                    "leave-class": "opacity-100 translate-y-0 sm:scale-100",
+                    "leave-to-class":
+                      "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      directives: [
                         {
-                          staticClass:
-                            "block text-sm font-medium text-gray-700",
-                          attrs: { for: "name" }
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.isOpenDialog,
+                          expression: "isOpenDialog"
+                        }
+                      ],
+                      staticClass:
+                        "modal-width inline-block align-bottom bg-white rounded-lg text-left\n        overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4"
                         },
-                        [_vm._v("Nombre")]
+                        [
+                          _c("div", { staticClass: "sm:flex sm:items-start" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10"
+                              },
+                              [
+                                _c(
+                                  "svg",
+                                  {
+                                    staticClass: "h-6 w-6 text-red-500",
+                                    attrs: {
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                      fill: "none",
+                                      viewBox: "0 0 24 24",
+                                      stroke: "currentColor",
+                                      "aria-hidden": "true"
+                                    }
+                                  },
+                                  [
+                                    _c("path", {
+                                      attrs: {
+                                        "stroke-linecap": "round",
+                                        "stroke-linejoin": "round",
+                                        "stroke-width": "2",
+                                        d:
+                                          "M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                      }
+                                    })
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "text-center sm:mt-0 sm:ml-4 sm:text-left sm:mt-2"
+                              },
+                              [
+                                _c("h3", {
+                                  staticClass:
+                                    "text-lg leading-6 font-medium text-gray-900",
+                                  attrs: { id: "modal-title" },
+                                  domProps: {
+                                    textContent: _vm._s(_vm.titleUser)
+                                  }
+                                })
+                              ]
+                            )
+                          ])
+                        ]
                       ),
                       _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.waco.name,
-                            expression: "waco.name"
-                          }
-                        ],
-                        class: _vm.styleClass,
-                        attrs: {
-                          type: "text",
-                          name: "name",
-                          id: "name",
-                          required: "",
-                          autocomplete: "given-name"
-                        },
-                        domProps: { value: _vm.waco.name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.waco, "name", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ])
-              ]
-            )
-          : _vm._e()
-      ])
-    ],
-    2
+                      _c("div", { staticClass: "container mx-auto p-6 pt-0" }, [
+                        _vm.waco && _vm.waco.id
+                          ? _c(
+                              "form",
+                              {
+                                staticClass: "space-y-6",
+                                attrs: { action: "#" },
+                                on: {
+                                  submit: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.updateUser($event)
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "md:grid md:grid-cols-2 md:gap-2"
+                                  },
+                                  [
+                                    _c("div", { staticClass: "col-span-6" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "block text-sm font-medium text-gray-700",
+                                          attrs: { for: "name" }
+                                        },
+                                        [_vm._v("Nombre")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.waco.name,
+                                            expression: "waco.name"
+                                          }
+                                        ],
+                                        class: _vm.styleClass,
+                                        attrs: {
+                                          type: "text",
+                                          name: "name",
+                                          id: "name",
+                                          required: "",
+                                          autocomplete: "given-name"
+                                        },
+                                        domProps: { value: _vm.waco.name },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.waco,
+                                              "name",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-span-6" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "block text-sm font-medium text-gray-700",
+                                          attrs: { for: "email_address" }
+                                        },
+                                        [_vm._v("Correo Electrónico")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.waco.email,
+                                            expression: "waco.email"
+                                          }
+                                        ],
+                                        class: _vm.styleClass,
+                                        attrs: {
+                                          type: "text",
+                                          name: "email_address",
+                                          id: "email_address",
+                                          autocomplete: "email",
+                                          required: "",
+                                          disabled: ""
+                                        },
+                                        domProps: { value: _vm.waco.email },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.waco,
+                                              "email",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-span-6" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "block text-sm font-medium text-gray-700",
+                                          attrs: { for: "birthdate" }
+                                        },
+                                        [_vm._v("Fecha Nacimiento")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.waco.birthdate,
+                                            expression: "waco.birthdate"
+                                          }
+                                        ],
+                                        class: _vm.styleClass,
+                                        attrs: {
+                                          type: "text",
+                                          id: "birthdate",
+                                          name: "birthdate"
+                                        },
+                                        domProps: { value: _vm.waco.birthdate },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.waco,
+                                              "birthdate",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-span-6" }, [
+                                      _c("label", {
+                                        attrs: { for: "password" },
+                                        domProps: {
+                                          textContent: _vm._s("Contraseña")
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.waco.password,
+                                            expression: "waco.password"
+                                          }
+                                        ],
+                                        class: _vm.styleClass,
+                                        attrs: {
+                                          id: "password",
+                                          name: "password",
+                                          type: "password",
+                                          autocomplete: "current-password",
+                                          placeholder: "Contraseña"
+                                        },
+                                        domProps: { value: _vm.waco.password },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.waco,
+                                              "password",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-span-6" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "block text-sm font-medium text-gray-700",
+                                          attrs: { for: "street_address" }
+                                        },
+                                        [_vm._v("Dirección")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.waco.address,
+                                            expression: "waco.address"
+                                          }
+                                        ],
+                                        class: _vm.styleClass,
+                                        attrs: {
+                                          type: "text",
+                                          name: "street_address",
+                                          id: "street_address",
+                                          autocomplete: "street-address"
+                                        },
+                                        domProps: { value: _vm.waco.address },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.waco,
+                                              "address",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-span-6" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "block text-sm font-medium text-gray-700",
+                                          attrs: { for: "city" }
+                                        },
+                                        [_vm._v("Ciudad")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.waco.city,
+                                            expression: "waco.city"
+                                          }
+                                        ],
+                                        class: _vm.styleClass,
+                                        attrs: {
+                                          type: "text",
+                                          name: "city",
+                                          id: "city"
+                                        },
+                                        domProps: { value: _vm.waco.city },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.waco,
+                                              "city",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
+                                  },
+                                  [
+                                    _c("button", {
+                                      staticClass:
+                                        "w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4\n                    py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2\n                    focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm",
+                                      attrs: { type: "submit" },
+                                      domProps: {
+                                        textContent: _vm._s("Actualizar")
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("button", {
+                                      staticClass:
+                                        "mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4\n                    py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2\n                    focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm",
+                                      attrs: { type: "button" },
+                                      domProps: {
+                                        textContent: _vm._s("Cancel")
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.isOpenDialog = !_vm.isOpenDialog
+                                        }
+                                      }
+                                    })
+                                  ]
+                                )
+                              ]
+                            )
+                          : _vm._e()
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ]
+      )
+    ]
   )
 }
 var staticRenderFns = []

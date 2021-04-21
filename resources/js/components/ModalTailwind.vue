@@ -1,100 +1,101 @@
 <template>
-  <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
-    <div class="modal-overlay absolute w-full h-full bg-white opacity-95"></div>
-    <div class="modal-container fixed w-full h-full z-50 overflow-y-auto ">
+  <transition
+      enter-active-class="ease-out duration-300"
+      enter-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-active-class="ease-in duration-200"
+      leave-class="opacity-100"
+      leave-to-class="opacity-0"
+  >
+    <div class="fixed z-10 inset-0 overflow-y-auto"
+         aria-labelledby="modal-title"
+         role="dialog" aria-modal="true"
+         v-show="value"
+    >
+      <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
 
-      <a @click.stop="closeModal"
-         class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-black text-sm z-50">
-        <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-             viewBox="0 0 18 18">
-          <path
-              d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-        </svg>
-      </a>
+        <!-- This element is to trick the browser into centering the modal contents. -->
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
-      <!-- Add margin if you want to see grey behind the modal-->
-      <div class="modal-content container mx-auto h-auto text-left p-4">
-        <slot name="container"></slot>
-        <!--Footer-->
-        <div class="flex justify-end pt-2">
-          <button class="modal-close px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-400" @click.stop="closeModal">
-            Cerrar
-          </button>
-        </div>
-
+        <transition
+            enter-active-class="ease-out duration-300"
+            enter-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            enter-to-class="opacity-100 translate-y-0 sm:scale-100"
+            leave-active-class="ease-in duration-200"
+            leave-class="opacity-100 translate-y-0 sm:scale-100"
+            leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        >
+          <div v-show="value" :class="classModal" class="inline-block align-bottom bg-white rounded-lg text-left
+          overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <div class="sm:flex sm:items-start">
+                <div v-if="icon"
+                     class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                  <!-- Heroicon name: outline/exclamation -->
+                  <template>
+                    <div v-html="icon" class="inline-block align-middle"></div>
+                  </template>
+                </div>
+                <div v-if="activeClose" @click.prevent="$emit('closeModal')"
+                     class="mx-auto position-active-close cursor-pointer flex-shrink-0 flex items-center justify-center
+                     h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10
+                     font-bold"
+                     v-text="'x'"
+                />
+                <div class="text-center sm:mt-0 sm:ml-4 sm:text-left sm:mt-2">
+                  <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title" v-text="title"></h3>
+                </div>
+              </div>
+            </div>
+            <div class="container mx-auto p-6 pt-0">
+              <slot name="container"></slot>
+            </div>
+          </div>
+        </transition>
       </div>
     </div>
-  </div>
+  </transition>
+
 </template>
 
 <script>
+
 export default {
   name: 'ModalTailwind',
   props: {
-    color: {
-      type: String,
-      default: 'red'
-    },
     value: {
-      type: Object,
+      type: Boolean,
+      default: false
+    },
+    classModal: {
+      type: Object|String,
+      default: null|''
+    },
+    title: {
+      type: String,
+      default: ''
+    },
+    icon: {
+      type: String,
       default: null
     },
-    openModal: {
+    activeClose: {
       type: Boolean,
       default: false
     }
   },
-  data: () => ({
-    text: ''
-  }),
-  watch: {
-    'openModal': {
-      handler (val) {
-        if (val) {
-          this.toggleModal()
-        }
-      },
-      immediate: true
-    },
-    'value': {
-      handler (val) {
-        console.log('HIZO', val)
-      },
-      immediate: true
+  data() {
+    return {
+      text: ''
     }
   },
-  methods: {
-    closeModal() {
-      this.openModal = false
-      this.$emit('close',false)
-      this.toggleModal()
-    },
-    toggleModal() {
-      const body = document.querySelector('body')
-      const modal = document.querySelector('.modal')
-      modal.classList.toggle('opacity-0')
-      modal.classList.toggle('pointer-events-none')
-      body.classList.toggle('modal-active')
-    }
-  },
-  mounted() {
-    console.log('Component mounted.')
-  }
 }
 </script>
 
-
 <style scoped>
-.modal {
-  transition: opacity 0.25s ease;
-}
-
-div.modal-active {
-  overflow: hidden;
-  overflow-y: auto !important;
-}
-
-.opacity-95 {
-  opacity: .95
-}
+  .position-active-close {
+    position: absolute;
+    right: 20px;
+  }
 </style>

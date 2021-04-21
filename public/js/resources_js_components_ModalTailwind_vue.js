@@ -40,18 +40,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'ModalTailwind',
   props: {
-    color: {
-      type: String,
-      "default": 'red'
-    },
     value: {
-      type: Object,
+      type: Boolean,
+      "default": false
+    },
+    classModal: {
+      type: Object | String,
+      "default": null | ''
+    },
+    title: {
+      type: String,
+      "default": ''
+    },
+    icon: {
+      type: String,
       "default": null
     },
-    openModal: {
+    activeClose: {
       type: Boolean,
       "default": false
     }
@@ -60,39 +100,6 @@ __webpack_require__.r(__webpack_exports__);
     return {
       text: ''
     };
-  },
-  watch: {
-    'openModal': {
-      handler: function handler(val) {
-        if (val) {
-          this.toggleModal();
-        }
-      },
-      immediate: true
-    },
-    'value': {
-      handler: function handler(val) {
-        console.log('HIZO', val);
-      },
-      immediate: true
-    }
-  },
-  methods: {
-    closeModal: function closeModal() {
-      this.openModal = false;
-      this.$emit('close', false);
-      this.toggleModal();
-    },
-    toggleModal: function toggleModal() {
-      var body = document.querySelector('body');
-      var modal = document.querySelector('.modal');
-      modal.classList.toggle('opacity-0');
-      modal.classList.toggle('pointer-events-none');
-      body.classList.toggle('modal-active');
-    }
-  },
-  mounted: function mounted() {
-    console.log('Component mounted.');
   }
 });
 
@@ -115,7 +122,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".modal[data-v-5aa9c16c] {\n  transition: opacity 0.25s ease;\n}\ndiv.modal-active[data-v-5aa9c16c] {\n  overflow: hidden;\n  overflow-y: auto !important;\n}\n.opacity-95[data-v-5aa9c16c] {\n  opacity: .95\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".position-active-close[data-v-5aa9c16c] {\n  position: absolute;\n  right: 20px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -230,86 +237,165 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "transition",
     {
-      staticClass:
-        "modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center"
+      attrs: {
+        "enter-active-class": "ease-out duration-300",
+        "enter-class": "opacity-0",
+        "enter-to-class": "opacity-100",
+        "leave-active-class": "ease-in duration-200",
+        "leave-class": "opacity-100",
+        "leave-to-class": "opacity-0"
+      }
     },
     [
-      _c("div", {
-        staticClass: "modal-overlay absolute w-full h-full bg-white opacity-95"
-      }),
-      _vm._v(" "),
       _c(
         "div",
         {
-          staticClass:
-            "modal-container fixed w-full h-full z-50 overflow-y-auto "
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.value,
+              expression: "value"
+            }
+          ],
+          staticClass: "fixed z-10 inset-0 overflow-y-auto",
+          attrs: {
+            "aria-labelledby": "modal-title",
+            role: "dialog",
+            "aria-modal": "true"
+          }
         },
         [
-          _c(
-            "a",
-            {
-              staticClass:
-                "modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-black text-sm z-50",
-              on: {
-                click: function($event) {
-                  $event.stopPropagation()
-                  return _vm.closeModal($event)
-                }
-              }
-            },
-            [
-              _c(
-                "svg",
-                {
-                  staticClass: "fill-current text-black",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    width: "18",
-                    height: "18",
-                    viewBox: "0 0 18 18"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                    }
-                  })
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
           _c(
             "div",
             {
               staticClass:
-                "modal-content container mx-auto h-auto text-left p-4"
+                "flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
             },
             [
-              _vm._t("container"),
+              _c("div", {
+                staticClass:
+                  "fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity",
+                attrs: { "aria-hidden": "true" }
+              }),
               _vm._v(" "),
-              _c("div", { staticClass: "flex justify-end pt-2" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "modal-close px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-400",
-                    on: {
-                      click: function($event) {
-                        $event.stopPropagation()
-                        return _vm.closeModal($event)
-                      }
-                    }
-                  },
-                  [_vm._v("\n          Cerrar\n        ")]
-                )
-              ])
+              _c(
+                "span",
+                {
+                  staticClass:
+                    "hidden sm:inline-block sm:align-middle sm:h-screen",
+                  attrs: { "aria-hidden": "true" }
+                },
+                [_vm._v("​")]
+              ),
+              _vm._v(" "),
+              _c(
+                "transition",
+                {
+                  attrs: {
+                    "enter-active-class": "ease-out duration-300",
+                    "enter-class":
+                      "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95",
+                    "enter-to-class": "opacity-100 translate-y-0 sm:scale-100",
+                    "leave-active-class": "ease-in duration-200",
+                    "leave-class": "opacity-100 translate-y-0 sm:scale-100",
+                    "leave-to-class":
+                      "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.value,
+                          expression: "value"
+                        }
+                      ],
+                      staticClass:
+                        "inline-block align-bottom bg-white rounded-lg text-left\n        overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full",
+                      class: _vm.classModal
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4"
+                        },
+                        [
+                          _c("div", { staticClass: "sm:flex sm:items-start" }, [
+                            _vm.icon
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10"
+                                  },
+                                  [
+                                    [
+                                      _c("div", {
+                                        staticClass:
+                                          "inline-block align-middle",
+                                        domProps: {
+                                          innerHTML: _vm._s(_vm.icon)
+                                        }
+                                      })
+                                    ]
+                                  ],
+                                  2
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.activeClose
+                              ? _c("div", {
+                                  staticClass:
+                                    "mx-auto position-active-close cursor-pointer flex-shrink-0 flex items-center justify-center\n                   h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10\n                   font-bold",
+                                  domProps: { textContent: _vm._s("x") },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.$emit("closeModal")
+                                    }
+                                  }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "text-center sm:mt-0 sm:ml-4 sm:text-left sm:mt-2"
+                              },
+                              [
+                                _c("h3", {
+                                  staticClass:
+                                    "text-lg leading-6 font-medium text-gray-900",
+                                  attrs: { id: "modal-title" },
+                                  domProps: { textContent: _vm._s(_vm.title) }
+                                })
+                              ]
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "container mx-auto p-6 pt-0" },
+                        [_vm._t("container")],
+                        2
+                      )
+                    ]
+                  )
+                ]
+              )
             ],
-            2
+            1
           )
         ]
       )

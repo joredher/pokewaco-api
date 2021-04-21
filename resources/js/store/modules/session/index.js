@@ -50,6 +50,10 @@ const mutations = {
         localStorage.setItem('access_token', JSON.stringify(state.access_token))
         router.push({name: 'Home', params: {userId: state.user.id}})
     },
+    updateLocaleUser (state, user) {
+        state.user = user
+        localStorage.setItem('user',JSON.stringify(state.user))
+    },
     assignTokenAxios() {
         this.axios.defaults.headers.common['Authorization'] = `Bearer ${state.access_token}`
     },

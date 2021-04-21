@@ -13,6 +13,16 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 {{--    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">--}}
 {{--    <script src="{{ mix('js/app.js') }}"></script>--}}
+    <style>
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+        body.modal-active {
+            overflow-x: hidden;
+            overflow-y: visible !important;
+        }
+        .opacity-95 {opacity: .95;}
+    </style>
 </head>
 <body>
     <div id="app"></div>
